@@ -878,6 +878,8 @@
     document.getElementById('profile-display-name').textContent = currentUser.name || 'นักศึกษา PSRU';
     document.getElementById('profile-display-email').textContent = currentUser.email || 'student@psru.ac.th';
     document.getElementById('profile-display-faculty').innerHTML = `<i class="fas fa-graduation-cap"></i> ${currentUser.faculty || 'วิทยาการคอมพิวเตอร์'}`;
+    document.getElementById('profile-display-phone').textContent = currentUser.phone || '-';
+    document.getElementById('profile-display-line').textContent = currentUser.line || '-';
 
     // Get count statistics
     const myPosts = posts.filter(p => p.line === currentUser.line);
