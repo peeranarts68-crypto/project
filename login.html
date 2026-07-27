@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>เข้าสู่ระบบ – PSRU Community</title>
+    <meta name="description" content="เข้าสู่ระบบ PSRU Community เพื่อใช้บริการของหายได้คืน ค้นหาเพื่อน และกลุ่มกิจกรรม" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="auth-page">
+    <!-- Top Navigation Bar -->
+    <nav class="navbar" style="position: absolute; top: 0; left: 0; width: 100%;">
+        <div class="nav-brand">
+            <img src="https://reg.psru.ac.th/images/logo_psru.gif" alt="PSRU Logo" class="nav-logo-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/th/4/4c/ตราประจำมหาวิทยาลัยราชภัฏพิบูลสงคราม.png';this.onerror=null;" />
+            <h1 class="logo"><a href="index.html">PSRU COMMUNITY</a></h1>
+        </div>
+        <div class="nav-links-container">
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link-item">หน้าแรก</a></li>
+                <li><a href="index.html" class="nav-link-item">ของหาย & ของที่พบ</a></li>
+                <li><a href="index.html" class="nav-link-item">หาเพื่อน & กิจกรรม</a></li>
+                <li><a href="index.html" class="nav-link-item">หมวดหมู่</a></li>
+            </ul>
+        </div>
+        <div class="nav-actions">
+            <a href="login.html" class="auth-btn active" style="background:var(--primary-color);color:#ffffff;">เข้าสู่ระบบ</a>
+        </div>
+    </nav>
+
+    <!-- Centered Form Wrapper -->
+    <div class="auth-wrapper">
+
+
+        <div class="auth-brand">
+            <h1 class="brand-title">PSRU COMMUNITY</h1>
+            <p class="brand-subtitle">CPE • 68 • PORTAL</p>
+        </div>
+        
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <a href="login.html" class="auth-tab active">เข้าสู่ระบบ</a>
+                <a href="register.html" class="auth-tab">สมัครสมาชิก</a>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginUsername">รหัสนักศึกษา (10 หลัก) หรือ อีเมลมหาวิทยาลัย</label>
+                    <input type="text" id="loginUsername" name="username" placeholder="6812345678 หรือ student@psru.ac.th" required />
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">รหัสผ่าน</label>
+                    <input type="password" id="loginPassword" name="password" placeholder="••••••••" required />
+                </div>
+                
+                <button type="submit" class="btn-submit">LOGIN</button>
+            </form>
+            
+            <div class="auth-footer-link">
+                ยังไม่มีบัญชี? <a href="register.html">สมัครสมาชิกที่นี่</a>
+            </div>
+        </div>
+        
+        <div class="auth-page-footer">
+            Credit By Computer Engineering PSRU68
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>สมัครสมาชิก – PSRU Community</title>
+    <meta name="description" content="สมัครสมาชิก PSRU Community เพื่อใช้บริการของหายได้คืน ค้นหาเพื่อน และกลุ่มกิจกรรม" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body class="auth-page">
+    <!-- Top Navigation Bar -->
+    <nav class="navbar" style="position: absolute; top: 0; left: 0; width: 100%;">
+        <div class="nav-brand">
+            <img src="https://reg.psru.ac.th/images/logo_psru.gif" alt="PSRU Logo" class="nav-logo-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/th/4/4c/ตราประจำมหาวิทยาลัยราชภัฏพิบูลสงคราม.png';this.onerror=null;" />
+            <h1 class="logo"><a href="index.html">PSRU COMMUNITY</a></h1>
+        </div>
+        <div class="nav-links-container">
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link-item">หน้าแรก</a></li>
+                <li><a href="index.html" class="nav-link-item">ของหาย & ของที่พบ</a></li>
+                <li><a href="index.html" class="nav-link-item">หาเพื่อน & กิจกรรม</a></li>
+                <li><a href="index.html" class="nav-link-item">หมวดหมู่</a></li>
+            </ul>
+        </div>
+        <div class="nav-actions">
+            <a href="login.html" class="auth-btn">เข้าสู่ระบบ</a>
+        </div>
+    </nav>
+
+    <!-- Centered Form Wrapper -->
+
+        <div class="auth-brand">
+            <h1 class="brand-title">PSRU COMMUNITY</h1>
+            <p class="brand-subtitle">CPE • 68 • PORTAL</p>
+        </div>
+        
+        <div class="auth-card">
+            <div class="auth-tabs">
+                <a href="login.html" class="auth-tab">เข้าสู่ระบบ</a>
+                <a href="register.html" class="auth-tab active">สมัครสมาชิก</a>
+            </div>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">รหัสนักศึกษา (10 หลัก)</label>
+                    <input type="text" id="regUsername" name="username" placeholder="6812345678" pattern="[0-9]{10}" title="กรุณากรอกรหัสนักศึกษา 10 หลัก" required />
+                </div>
+                
+                <div class="form-group">
+                    <label for="regPassword">รหัสผ่าน</label>
+                    <input type="password" id="regPassword" name="password" placeholder="••••••••" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="regFaculty">คณะ</label>
+                    <select id="regFaculty" name="faculty" required>
+                        <option value="" disabled selected>เลือกคณะ</option>
+                        <option value="วิทยาศาสตร์และเทคโนโลยี">คณะวิทยาศาสตร์และเทคโนโลยี</option>
+                        <option value="วิศวกรรมศาสตร์และเทคโนโลยีอุตสาหกรรม">คณะวิศวกรรมศาสตร์และเทคโนโลยีอุตสาหกรรม</option>
+                        <option value="ครุศาสตร์">คณะครุศาสตร์</option>
+                        <option value="มนุษยศาสตร์และสังคมศาสตร์">คณะมนุษยศาสตร์และสังคมศาสตร์</option>
+                        <option value="วิทยาการจัดการ">คณะวิทยาการจัดการ</option>
+                        <option value="เทคโนโลยีการเกษตรและอาหาร">คณะเทคโนโลยีการเกษตรและอาหาร</option>
+                        <option value="พยาบาลศาสตร์">คณะพยาบาลศาสตร์</option>
+                        <option value="สังคมศาสตร์และการพัฒนาท้องถิ่น">คณะสังคมศาสตร์และการพัฒนาท้องถิ่น</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-submit">REGISTER</button>
+            </form>
+            
+            <div class="auth-footer-link">
+                มีบัญชีอยู่แล้ว? <a href="login.html">เข้าสู่ระบบที่นี่</a>
+            </div>
+        </div>
+        
+        <div class="auth-page-footer">
+            Credit By Computer Engineering PSRU68
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

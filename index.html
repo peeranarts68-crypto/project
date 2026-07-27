@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PSRU Community – แหล่งเชื่อมต่อ แบ่งปัน ช่วยเหลือ ในรั้วมหาวิทยาลัย</title>
+    <meta name="description" content="แพลตฟอร์มสำหรับลงประกาศของหายได้คืน ค้นหาเพื่อนเรียน ทำกิจกรรม ในรั้วมหาวิทยาลัยราชภัฏพิบูลสงคราม" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="https://reg.psru.ac.th/images/logo_psru.gif" alt="PSRU Logo" class="nav-logo-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/th/4/4c/ตราประจำมหาวิทยาลัยราชภัฏพิบูลสงคราม.png';this.onerror=null;" />
+            <h1 class="logo"><a href="#" onclick="navigateTo('view-home')">PSRU COMMUNITY</a></h1>
+        </div>
+        <div class="nav-links-container">
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link-item active" id="nav-link-home" onclick="navigateTo('view-home')">หน้าแรก</a></li>
+                <li><a href="#" class="nav-link-item" id="nav-link-lostfound" onclick="navigateTo('view-lostfound')">ของหาย & ของที่พบ</a></li>
+                <li><a href="#" class="nav-link-item" id="nav-link-friendfinder" onclick="navigateTo('view-friendfinder')">หาเพื่อน & กิจกรรม</a></li>
+                <li><a href="#" class="nav-link-item" id="nav-link-categories" onclick="navigateTo('view-categories')">หมวดหมู่</a></li>
+                <li class="auth-only"><a href="#" class="nav-link-item" id="nav-link-chats" onclick="navigateTo('view-chats')">ข้อความ <span class="badge-dot hidden"></span></a></li>
+                <li class="auth-only"><a href="#" class="nav-link-item" id="nav-link-profile" onclick="navigateTo('view-profile')">โปรไฟล์</a></li>
+            </ul>
+        </div>
+        <div class="nav-actions">
+            <button class="btn-primary" id="openPostModalBtn" onclick="openCreatePostModal()">ลงประกาศ</button>
+            <div class="auth-buttons" id="auth-nav-buttons">
+                <!-- Injected dynamically -->
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <div class="menu-toggle" id="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div class="nav-menu" id="nav-menu">
+            <div class="nav-menu-header">
+                <h3>เมนูนำทาง</h3>
+                <span class="close-menu" id="close-menu-btn" onclick="toggleMobileMenu()">&times;</span>
+            </div>
+            <div class="user-profile-section" id="user-profile-section"></div>
+            <ul class="nav-menu-links">
+                <li><a href="#" onclick="navigateTo('view-home'); toggleMobileMenu();"><i class="fas fa-home"></i> หน้าแรก</a></li>
+                <li><a href="#" onclick="navigateTo('view-lostfound'); toggleMobileMenu();"><i class="fas fa-search-plus"></i> ของหาย & ของที่พบ</a></li>
+                <li><a href="#" onclick="navigateTo('view-friendfinder'); toggleMobileMenu();"><i class="fas fa-user-friends"></i> หาเพื่อน & กิจกรรม</a></li>
+                <li><a href="#" onclick="navigateTo('view-categories'); toggleMobileMenu();"><i class="fas fa-tags"></i> หมวดหมู่ทั้งหมด</a></li>
+                <li class="auth-only"><a href="#" onclick="navigateTo('view-chats'); toggleMobileMenu();"><i class="fas fa-comment-dots"></i> ข้อความ</a></li>
+                <li class="auth-only"><a href="#" onclick="navigateTo('view-profile'); toggleMobileMenu();"><i class="fas fa-user-circle"></i> โปรไฟล์ส่วนตัว</a></li>
+                <li id="mobile-login-item"><a href="login.html"><i class="fas fa-sign-in-alt"></i> เข้าสู่ระบบ</a></li>
+                <li id="mobile-logout-item" class="hidden"><a href="#" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a></li>
+            </ul>
+        </div>
+        <div class="menu-overlay" id="menu-overlay" onclick="toggleMobileMenu()"></div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+        
+        <!-- SECTION 1: HOME VIEW -->
+        <section class="web-view active" id="view-home">
+            <!-- Search & Welcome Header Banner -->
+            <div class="home-hero">
+                <div class="home-hero-bg"></div>
+                <div class="home-hero-content">
+                    <h2>เชื่อมต่อ แบ่งปัน ช่วยเหลือกัน</h2>
+                    <p>สร้างสังคมที่ดีร่วมกันในรั้วมหาวิทยาลัยราชภัฏพิบูลสงคราม (PSRU)</p>
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="mainSearchInput" placeholder="ค้นหาของหาย, ของที่พบ, เพื่อนทำโปรเจกต์..." oninput="handleMainSearch()" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing Promotional Banner Slider -->
+            <div class="promo-banner-container">
+                <div class="promo-banner">
+                    <div class="promo-content">
+                        <h3>เชื่อมต่อ แบ่งปัน ช่วยเหลือ</h3>
+                        <p>ร่วมกันสร้างสังคมที่น่าอยู่และปลอดภัยในมหาวิทยาลัย</p>
+                    </div>
+                    <img src="https://img.freepik.com/free-vector/happy-students-illustration_23-2148135898.jpg?w=1060" alt="Students Illustration" class="promo-img" />
+                </div>
+            </div>
+
+            <!-- Main Categories Shortcut Cards -->
+            <div class="shortcut-section container">
+                <h3 class="section-title">หมวดหมู่หลัก</h3>
+                <div class="shortcut-grid">
+                    <div class="shortcut-card" onclick="navigateTo('view-lostfound', {type: 'lost'})">
+                        <div class="shortcut-icon icon-lost"><i class="fas fa-box-open"></i></div>
+                        <div class="shortcut-info">
+                            <h4>Lost & Found</h4>
+                            <p>ของหาย / ของที่พบ</p>
+                        </div>
+                    </div>
+                    <div class="shortcut-card" onclick="navigateTo('view-friendfinder')">
+                        <div class="shortcut-icon icon-friend"><i class="fas fa-user-friends"></i></div>
+                        <div class="shortcut-info">
+                            <h4>Friend Finder</h4>
+                            <p>หาเพื่อน / กลุ่มกิจกรรม</p>
+                        </div>
+                    </div>
+                    <div class="shortcut-card" onclick="navigateTo('view-lostfound', {type: 'all'})">
+                        <div class="shortcut-icon icon-all"><i class="fas fa-clipboard-list"></i></div>
+                        <div class="shortcut-info">
+                            <h4>ประกาศทั้งหมด</h4>
+                            <p>ดูรายการประกาศทั้งหมด</p>
+                        </div>
+                    </div>
+                    <div class="shortcut-card" onclick="navigateTo('view-categories')">
+                        <div class="shortcut-icon icon-cat"><i class="fas fa-th-large"></i></div>
+                        <div class="shortcut-info">
+                            <h4>หมวดหมู่</h4>
+                            <p>เลือกตามหมวดหมู่สิ่งของ</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Posts List -->
+            <div class="recent-posts-section container">
+                <div class="section-header">
+                    <h3 class="section-title">ประกาศล่าสุด</h3>
+                    <a href="#" class="view-all-link" onclick="navigateTo('view-lostfound')">ดูทั้งหมด <i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="posts-grid" id="home-posts-grid">
+                    <!-- Dynamic Recent Posts Injected Here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: LOST & FOUND VIEW -->
+        <section class="web-view" id="view-lostfound">
+            <div class="view-header container">
+                <h2 class="view-title">Lost & Found (ของหาย & ของที่พบ)</h2>
+                <div class="view-header-actions">
+                    <div class="search-wrapper inline-search">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="lostfoundSearch" placeholder="ค้นหาของหาย..." oninput="filterLostFound()" />
+                    </div>
+                    <button class="btn-filter" onclick="toggleLostFoundFilters()"><i class="fas fa-filter"></i> ตัวกรอง</button>
+                </div>
+            </div>
+
+            <!-- Tab Controls -->
+            <div class="tab-container container">
+                <div class="tab-navigation">
+                    <button class="tab-btn active" id="lf-tab-all" onclick="setLostFoundFilterType('all')">ทั้งหมด</button>
+                    <button class="tab-btn" id="lf-tab-lost" onclick="setLostFoundFilterType('lost')">ของหาย</button>
+                    <button class="tab-btn" id="lf-tab-found" onclick="setLostFoundFilterType('found')">ของที่พบ</button>
+                </div>
+            </div>
+
+            <div class="feed-container container">
+                <div class="posts-grid" id="lostfound-posts-grid">
+                    <!-- Dynamic Posts Injected Here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: FRIEND FINDER VIEW -->
+        <section class="web-view" id="view-friendfinder">
+            <div class="view-header container">
+                <h2 class="view-title">Friend Finder (ค้นหาเพื่อน & กิจกรรม)</h2>
+                <div class="view-header-actions">
+                    <div class="search-wrapper inline-search">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="friendSearch" placeholder="ค้นหาเพื่อน..." oninput="filterFriendFinder()" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subtabs -->
+            <div class="tab-container container">
+                <div class="tab-navigation flex-tabs">
+                    <button class="tab-btn active" id="friend-tab-study" onclick="setFriendFilterCategory('study')">หาเพื่อนเรียน</button>
+                    <button class="tab-btn" id="friend-tab-project" onclick="setFriendFilterCategory('project')">หาเพื่อนทำโปรเจกต์</button>
+                    <button class="tab-btn" id="friend-tab-activity" onclick="setFriendFilterCategory('activity')">กิจกรรม</button>
+                    <button class="tab-btn" id="friend-tab-sport" onclick="setFriendFilterCategory('sport')">กีฬา / เกม / อื่นๆ</button>
+                </div>
+            </div>
+
+            <div class="feed-container container">
+                <div class="posts-grid" id="friend-posts-grid">
+                    <!-- Dynamic Posts Injected Here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CATEGORIES VIEW -->
+        <section class="web-view" id="view-categories">
+            <div class="view-header container">
+                <h2 class="view-title">หมวดหมู่ทั้งหมด</h2>
+            </div>
+            <div class="categories-grid container" id="categories-grid-container">
+                <!-- Dynamic Category Items Injected Here -->
+            </div>
+        </section>
+
+        <!-- SECTION 5: CHATS VIEW -->
+        <section class="web-view" id="view-chats">
+            <div class="chats-layout container">
+                <!-- Left Sidebar: Conversations -->
+                <div class="chats-sidebar">
+                    <div class="sidebar-header">
+                        <h3>ข้อความ</h3>
+                        <div class="chat-search">
+                            <input type="text" placeholder="ค้นหาแชท..." />
+                        </div>
+                    </div>
+                    <div class="chat-list" id="chat-list-container">
+                        <!-- Dynamic Chat Items Injected Here -->
+                    </div>
+                </div>
+
+                <!-- Right Pane: Active Chat Window -->
+                <div class="chat-window" id="active-chat-window">
+                    <div class="chat-window-placeholder" id="chat-placeholder">
+                        <i class="fas fa-comments"></i>
+                        <h4>กล่องข้อความ</h4>
+                        <p>เลือกแชทเพื่อเริ่มสนทนาติดต่อสอบถามเรื่องของหายหรือชวนคุยทำกิจกรรม</p>
+                    </div>
+
+                    <div class="chat-window-content hidden" id="chat-active-content">
+                        <!-- Chat Header -->
+                        <div class="chat-header">
+                            <div class="chat-user-info">
+                                <img src="" alt="Avatar" class="chat-avatar" id="active-chat-avatar" />
+                                <div>
+                                    <h4 class="chat-user-name" id="active-chat-name">...</h4>
+                                    <span class="chat-status" id="active-chat-status">ออนไลน์</span>
+                                </div>
+                            </div>
+                            <div class="chat-header-actions">
+                                <button class="btn-chat-action" id="view-linked-post-btn"><i class="fas fa-external-link-alt"></i> ดูประกาศ</button>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages Screen -->
+                        <div class="chat-messages" id="chat-messages-container">
+                            <!-- Messages Injected Dynamically -->
+                        </div>
+
+                        <!-- Chat Footer / Input Form -->
+                        <form class="chat-footer" id="chat-input-form" onsubmit="handleSendChat(event)">
+                            <input type="text" id="chat-message-input" placeholder="พิมพ์ข้อความที่นี่..." required autocomplete="off" />
+                            <button type="submit" class="btn-send"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: PROFILE VIEW -->
+        <section class="web-view" id="view-profile">
+            <div class="profile-layout container">
+                <!-- Left Profile Stats Card -->
+                <div class="profile-card">
+                    <div class="profile-header-banner"></div>
+                    <div class="profile-info-section">
+                        <div class="profile-avatar-container">
+                            <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=200" alt="Profile" class="profile-avatar" id="profile-avatar-img" />
+                            <button class="btn-avatar-edit" onclick="alert('ฟีเจอร์อัปโหลดภาพกำลังอยู่ในระหว่างพัฒนา')"><i class="fas fa-camera"></i></button>
+                        </div>
+                        <h3 class="profile-name" id="profile-display-name">นักศึกษา PSRU</h3>
+                        <p class="profile-email" id="profile-display-email">student@psru.ac.th</p>
+                        <p class="profile-faculty" id="profile-display-faculty"><i class="fas fa-graduation-cap"></i> คณะวิทยาการคอมพิวเตอร์</p>
+                    </div>
+
+                    <!-- Profile Stats -->
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="profile-count-posts">0</span>
+                            <span class="stat-label">ประกาศของฉัน</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="profile-count-bookmarks">0</span>
+                            <span class="stat-label">บันทึกไว้</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">15</span>
+                            <span class="stat-label">ผู้ติดตาม</span>
+                        </div>
+                    </div>
+
+                    <!-- Profile Menu Links -->
+                    <div class="profile-menu">
+                        <button class="profile-menu-item active" id="profile-menu-posts" onclick="setProfileViewTab('posts')">
+                            <i class="fas fa-clipboard-list"></i> ประกาศของฉัน
+                        </button>
+                        <button class="profile-menu-item" id="profile-menu-bookmarks" onclick="setProfileViewTab('bookmarks')">
+                            <i class="fas fa-bookmark"></i> บันทึกไว้
+                        </button>
+                        <button class="profile-menu-item" onclick="alert('ประวัติติดต่อและแจ้งเตือนกำลังอยู่ในระหว่างพัฒนา')">
+                            <i class="fas fa-history"></i> ประวัติติดต่อ
+                        </button>
+                        <button class="profile-menu-item" onclick="alert('ตั้งค่าระบบยังไม่มีผลกับรุ่นตัวอย่างนี้')">
+                            <i class="fas fa-cog"></i> ตั้งค่าการใช้งาน
+                        </button>
+                        <button class="profile-menu-item text-danger" onclick="handleLogout()">
+                            <i class="fas fa-sign-out-alt"></i> ออกจากระบบ
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Dynamic Grid Area -->
+                <div class="profile-content-area">
+                    <h3 class="content-area-title" id="profile-tab-title">ประกาศของฉัน</h3>
+                    <div class="posts-grid" id="profile-posts-grid">
+                        <!-- Filtered Cards Injected Dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: POST DETAIL VIEW -->
+        <section class="web-view" id="view-detail">
+            <div class="detail-container container">
+                <button class="btn-back" onclick="goBack()"><i class="fas fa-arrow-left"></i> ย้อนกลับ</button>
+                
+                <div class="detail-layout">
+                    <!-- Left: Media/Image -->
+                    <div class="detail-gallery">
+                        <div class="detail-main-img-wrapper" id="detail-main-img-container">
+                            <!-- Image Injected Dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Right: Info Panel -->
+                    <div class="detail-info-panel">
+                        <div class="detail-header">
+                            <span class="badge-post-type" id="detail-post-type-badge">...</span>
+                            <h2 class="detail-title" id="detail-post-title">...</h2>
+                            <p class="detail-meta">โดย <span class="detail-author" id="detail-post-author">...</span> • โพสต์เมื่อ <span class="detail-date" id="detail-post-date">...</span></p>
+                        </div>
+
+                        <!-- Attributes Table -->
+                        <div class="detail-attributes">
+                            <table class="attributes-table">
+                                <tbody>
+                                    <tr>
+                                        <td><i class="fas fa-tags"></i> หมวดหมู่หลัก</td>
+                                        <td id="detail-attr-category">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-map-marker-alt"></i> สถานที่</td>
+                                        <td id="detail-attr-location">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-graduation-cap"></i> คณะ/สาขา</td>
+                                        <td id="detail-attr-faculty">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fas fa-calendar-alt"></i> วันที่ทำรายการ</td>
+                                        <td id="detail-attr-datetime">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Description Body -->
+                        <div class="detail-description">
+                            <h4>รายละเอียดเพิ่มเติม</h4>
+                            <p id="detail-post-desc">...</p>
+                        </div>
+
+                        <!-- Contacts Channels Details -->
+                        <div class="detail-contacts">
+                            <h4>ช่องทางติดต่อ</h4>
+                            <div class="contacts-grid">
+                                <div class="contact-pill" id="detail-contact-line">
+                                    <i class="fab fa-line"></i> Line: <span class="val">-</span>
+                                </div>
+                                <div class="contact-pill" id="detail-contact-phone">
+                                    <i class="fas fa-phone"></i> เบอร์โทร: <span class="val">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Controls -->
+                        <div class="detail-actions">
+                            <button class="btn-chat-now" id="detail-action-chat-btn"><i class="fas fa-comment-dots"></i> ติดต่อเจ้าของประกาศ</button>
+                            <button class="btn-bookmark-now" id="detail-action-bookmark-btn"><i class="far fa-bookmark"></i> บันทึกไว้</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- UNIFIED CREATE POST MODAL -->
+    <div id="postModal" class="modal hidden" aria-hidden="true" onclick="handleModalBgClick(event)">
+        <div class="modal-content">
+            <span class="close" onclick="closeCreatePostModal()">&times;</span>
+            <h2 class="modal-title">ลงประกาศใหม่</h2>
+            
+            <form id="postForm" onsubmit="handleCreatePostSubmit(event)">
+                <!-- Post Mode Selector -->
+                <div class="post-type-selector">
+                    <label class="type-pill active">
+                        <input type="radio" name="post_main_type" value="lost_found" checked onclick="togglePostFormFields('lost_found')" />
+                        <span>ของหาย / ของที่พบ</span>
+                    </label>
+                    <label class="type-pill">
+                        <input type="radio" name="post_main_type" value="friend_finder" onclick="togglePostFormFields('friend_finder')" />
+                        <span>หาเพื่อน & กิจกรรม</span>
+                    </label>
+                </div>
+
+                <!-- Sub Selection lost_found -->
+                <div class="form-group" id="group-lf-type">
+                    <label for="postType">ประเภทประกาศ</label>
+                    <select id="postType" name="type">
+                        <option value="lost">ของหาย (กำลังตามหา)</option>
+                        <option value="found">ของที่พบ (ตามหาเจ้าของ)</option>
+                    </select>
+                </div>
+
+                <!-- Sub Selection friend_finder -->
+                <div class="form-group hidden" id="group-friend-category">
+                    <label for="friendCategory">ประเภทกลุ่มกิจกรรม</label>
+                    <select id="friendCategory" name="friendCategory">
+                        <option value="study">หาเพื่อนเรียน (วิชาเรียน/สอบ)</option>
+                        <option value="project">หาเพื่อนทำโปรเจกต์ (แล็บ/ประกวด)</option>
+                        <option value="activity">กิจกรรม (ท่องเที่ยว/หารเฉลี่ย/ชอปปิ้ง)</option>
+                        <option value="sport">กีฬา & เกม (แข่งรถ/วิ่ง/Valorant/ROV)</option>
+                    </select>
+                </div>
+
+                <!-- Title & Header -->
+                <div class="form-group">
+                    <label for="postTitle" id="lbl-title">หัวข้อประกาศ *</label>
+                    <input type="text" id="postTitle" name="title" placeholder="เช่น หูฟังบลูทูธ Sony สีดำ, หาเพื่อนเรียนวิชา OOP" required />
+                </div>
+
+                <!-- Category selector for item -->
+                <div class="form-group" id="group-lf-item-category">
+                    <label for="itemCategory">หมวดหมู่สิ่งของ</label>
+                    <select id="itemCategory" name="itemCategory">
+                        <option value="electronics">อุปกรณ์อิเล็กทรอนิกส์</option>
+                        <option value="bags">กระเป๋า / สัมภาระ</option>
+                        <option value="cards">บัตร / เอกสาร</option>
+                        <option value="keys">กุญแจ</option>
+                        <option value="clothes">เสื้อผ้า / เครื่องแต่งกาย</option>
+                        <option value="books">หนังสือ / อุปกรณ์การเรียน</option>
+                        <option value="sports">กีฬา / ดนตรี / งานอดิเรก</option>
+                        <option value="others">อื่นๆ</option>
+                    </select>
+                </div>
+
+                <!-- Details / Description -->
+                <div class="form-group">
+                    <label for="postDescription">รายละเอียดเพิ่มเติม *</label>
+                    <textarea id="postDescription" name="description" rows="3" placeholder="ระบุรายละเอียด รูปร่าง สี ตำหนิ หรือรายละเอียดกิจกรรมที่ต้องการ" required></textarea>
+                </div>
+
+                <!-- Location -->
+                <div class="form-group">
+                    <label for="postLocation">สถานที่ (พิกัด / อาคารเรียน) *</label>
+                    <input type="text" id="postLocation" name="location" placeholder="เช่น อาคารคณะเทคโนโลยีอุตสาหกรรม ชั้น 1" required />
+                </div>
+
+                <!-- Date / Time -->
+                <div class="form-group" id="group-lf-datetime">
+                    <label for="postDatetime">วันที่และเวลาที่ทำหาย/เจอของ</label>
+                    <input type="datetime-local" id="postDatetime" name="datetime" />
+                </div>
+
+                <!-- Contacts -->
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="postPhone">เบอร์โทรศัพท์ติดต่อ</label>
+                        <input type="tel" id="postPhone" name="phone" placeholder="091-234-5678" />
+                    </div>
+                    <div class="form-group">
+                        <label for="postLine">Line ID</label>
+                        <input type="text" id="postLine" name="line" placeholder="psru.student" />
+                    </div>
+                </div>
+
+                <!-- File image selector -->
+                <div class="form-group">
+                    <label>อัปโหลดรูปภาพประกอบ (สูงสุด 5 รูป)</label>
+                    <div class="file-dropzone" onclick="document.getElementById('postImage').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>คลิกเพื่อเลือกภาพประกอบประกาศของคุณ</span>
+                        <input type="file" id="postImage" accept="image/*" class="hidden" onchange="handleImageFileSelect(this)" />
+                    </div>
+                    <div class="image-preview-bar hidden" id="modal-img-preview-bar">
+                        <img src="" id="modal-img-preview" alt="Preview" />
+                        <button type="button" class="btn-remove-img" onclick="clearSelectedImage()">&times;</button>
+                    </div>
+                </div>
+
+                <!-- Submit buttons controls -->
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="closeCreatePostModal()">ยกเลิก</button>
+                    <button type="submit" class="btn-submit">ลงประกาศทันที</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="footer-brand">
+                <h4>PSRU COMMUNITY</h4>
+                <p>เชื่อมต่อ แบ่งปัน ช่วยเหลือ สร้างสังคมที่ดีในรั้ว PSRU</p>
+            </div>
+            <div class="footer-links">
+                <a href="#" onclick="navigateTo('view-home')">หน้าแรก</a> • 
+                <a href="#" onclick="navigateTo('view-lostfound')">ของหาย</a> • 
+                <a href="#" onclick="navigateTo('view-friendfinder')">หาเพื่อน</a> • 
+                <a href="login.html">เข้าสู่ระบบ</a>
+            </div>
+        </div>
+        <p class="credit">© 2026 PSRU Community. Designed & Credit By Computer Engineering PSRU68</p>
+    </footer>
+
+    <!-- App Scripts -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
